@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>input test</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: tomato;
+        }
+
+        .outer {
+            margin: 5% auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        .kit {
+            width: 100px;
+            height: 100px;
+            background-color: #333;
+            font-size: 250%;
+            margin: auto;
+            text-align: center;
+            color: white;
+        }
+
+        .p {
+            font-size: 50%;
+        }
+
+        .content {
+            margin: 10%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 769px) {
+            .content {
+                margin: 10%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .kit {
+                width: 75px;
+                height: 75px;
+                background-color: #333;
+                font-size: 200%;
+                margin: auto;
+                text-align: center;
+                color: white;
+            }
+        }
+
+        @media (max-width: 426px) {
+            .content {
+                margin: 10%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .kit {
+                width: 75px;
+                height: 75px;
+                background-color: #333;
+                font-size: 200%;
+                margin: auto;
+                text-align: center;
+                color: white;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="outer">
+        <div class="header">
+            <h1>Drum Kit</h1>
+        </div>
+        <div class="content">
+            <div class="kit 1" id="crash">W
+                <p class="p">crash</p>
+            </div>
+            <div class="kit 2" id="kick-bass">S
+                <p class="p">Kick Bass</p>
+            </div>
+            <div class="kit 3" id="snare">A
+                <p class="p">Snare</p>
+            </div>
+            <div class="kit 4" id="tom-1">D
+                <p class="p">Tom 1</p>
+            </div>
+            <div class="kit 5" id="tom-2">Z
+                <p class="p">Tom 2</p>
+            </div>
+            <div class="kit 6" id="tom-3">X
+                <p class="p">Tom 3</p>
+            </div>
+            <div class="kit 7" id="tom-4">C
+                <p class="p">Tom 4</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const crash = document.getElementById("crash");
+        const kickBass = document.getElementById("kick-bass");
+        const snare = document.getElementById("snare");
+        const tom1 = document.getElementById("tom-1");
+        const tom2 = document.getElementById("tom-2");
+        const tom3 = document.getElementById("tom-3");
+        const tom4 = document.getElementById("tom-4");
+
+        function playDrumSound(soundPath) {
+            const audio = new Audio(soundPath);
+            audio.play();
+        }
+
+        document.addEventListener("keypress", function (event) {
+            if (event.key === "w") {
+                playDrumSound("sounds/crash.mp3");
+            } else if (event.key === "s") {
+                playDrumSound("sounds/kick-bass.mp3");
+            } else if (event.key === "a") {
+                playDrumSound("sounds/snare.mp3");
+            } else if (event.key === "d") {
+                playDrumSound("sounds/tom-1.mp3");
+            } else if (event.key === "z") {
+                playDrumSound("sounds/tom-2.mp3");
+            } else if (event.key === "x") {
+                playDrumSound("sounds/tom-3.mp3");
+            } else if (event.key === "c") {
+                playDrumSound("sounds/tom-4.mp3");
+            }
+        });
+
+        function addTouchListener() {
+            const drumElement = document.querySelectorAll(".kit");
+            drumElement.forEach(function (drumElement) {
+                drumElement.addEventListener("touchstart", function (){
+                    const soundPath = "sounds/" + drumElement.id + ".mp3";
+                    playDrumSound(soundPath);
+                });
+            });
+        };
+
+        addTouchListener();
+    </script>
+</body>
+
+
+</html>
